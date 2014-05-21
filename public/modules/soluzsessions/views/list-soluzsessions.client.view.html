@@ -1,0 +1,14 @@
+<section data-ng-controller="SoluzsessionsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Soluzsessions</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="soluzsession in soluzsessions" data-ng-href="#!/soluzsessions/{{soluzsession._id}}" class="list-group-item">
+            <small class="list-group-item-text">{{soluzsession.created | date:'medium'}} / {{soluzsession.user.displayName}}</small>
+            <h4 class="list-group-item-heading">{{soluzsession.name}}</h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!soluzsessions.$resolved || soluzsessions.length">
+    	No Soluzsessions yet, why don't you <a href="/#!/soluzsessions/create">create one</a>?
+    </div>
+</section>

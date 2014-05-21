@@ -1,0 +1,76 @@
+status.txt
+S. Tanimoto
+May 21, 2014
+
+This project contains my May 21 attempt to turn a demo project into a useful
+prototype of Soluzion.
+
+The demo comes from:
+http://meanjs.org/generator.html
+and was created using the basic application generator:
+$ yo meanjs
+
+
+My strategy:  add additional components by using the Yo CRUD-module sub-generator:
+$ yo meanjs:crud-module <module-name>
+
+I plan to create just a few new datatypes to get the Soluzion functionality going:
+group (mostly a list of users but with extra stuff like leader)
+session (mostly a reference to a group, a problem, and a list of nodes)
+node (which will contain a state, but a state need not be a first-class and therefore
+  heavyweight content object).
+problem (which can store all the various problem template components).
+
+Once the back end works here, I will explore how to create a front end for this,
+in addition to whatever the MEAN project gives me (which can be an administrative
+interface for looking at the database, I guess).
+
+---
+
+I lost around half a day to a bug that stopped the app from working.
+I had used the crud-module generator to add more functionality to the project, but it broke it.
+
+After building a new copy of the MEANJS project, testing it and then adding 1 new CRUD module (which broke it),
+I was able to determine that the presence of the following file breaks the functionality:
+
+public/modules/soluzgroups/config/soluzgroups.client.config.js
+
+Simply renaming this file to have the extension .js.tmp instead of .js was enough to get the sample project
+to run again.
+
+I will have to do this for each new data type in this project, and figure out what is breaking it.
+
+Note that the yo generator for crud-module is located on my machine at:
+/usr/local/lib/node_modules/generator-meanjs/crud-module
+The Javascript here gives some clues to where the functionality for a new datatype has been implemented.
+
+I found that usiing the
+yo meanjs:crud-module teams
+and using the menu identifier 'topbar' which is the default, I can get working behavior with the new datatype.
+
+Next, I want to find out how to modify the data model for the new entity.  There clearly is more to the
+generator than just the default, since the "article" data type of the main demo is richer than the default.
+
+I looked at the code that implements the main meanjs generator in yo.
+Unfortunately it simply copies over pre-generated CRUD files for the Article datatype.
+(The generator actually did not generate any of this code, it seems.)
+So the best I can do is either to modify the templates for the crud-module generator
+or to hand-edit the code I get from the generator.
+
+I asked to join the Facebook group on MEANJS and ask if anyone has another generator for this or some
+templates for this generator.  I'll see if I get admitted to the group and then get a constructive
+answer other than "write your own."
+
+Alternatively,  I can probably go with what is here, and use client-side logic to pull out multiple fields from
+the text-only data objects I am getting now.  I can certainly just use JSON encoding here.
+
+---
+My next jobs are:
+a. adjust the layout of the home page so the entire menu shows and doesn't cover up anythin.
+b. Write some tests to begin to test the API.
+
+
+
+
+
+
