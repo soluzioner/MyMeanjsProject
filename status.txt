@@ -66,8 +66,12 @@ the text-only data objects I am getting now.  I can certainly just use JSON enco
 
 ---
 My next jobs are:
-a. adjust the layout of the home page so the entire menu shows and doesn't cover up anythin.
+a. adjust the layout of the home page so the entire menu shows and doesn't cover up anything.
+  DONE AFTER A FASHION.  Layout quality depends on user's zoom factor. But is is a lot better now, after
+  I added some extra filler in the body (a new additional h1 heading that isn't important, which might be hidden.)
 b. Write some tests to begin to test the API.
+  I am thinking of trying to do this using the Brython Rest API demo.
+
 
 
 
